@@ -1,0 +1,27 @@
+body {
+    background-color: whitesmoke;
+}
+
+.form-container {
+    display: none;
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.book-container > span {
+    background-color: lightcyan;
+    border: 1px solid black;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
