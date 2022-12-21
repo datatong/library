@@ -13,10 +13,18 @@ let newCard = document.createElement("span");
 newCard.id = 'card';
 let cardContent = document.createTextNode(title);
 
+
 //event listeners
 newBookBtn.addEventListener("click", showForm);
-submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+submitBtn.addEventListener("click", () => {
+    //check for inputs and submit inputs
+    //
+    
+    formContainer.style.display = 'block';
+    //prevent sending input to server
+    (e) => {
+        e.preventDefault();
+    }
 });
 
 //array
@@ -34,8 +42,15 @@ function Book(title, author, pages, read) {
 }
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
+
+/*test:
 //console.log(theHobbit);
 //let theHob = JSON.stringify(theHobbit);
+*/
+
+//display object info as HTML (innerHTML?)
+document.getElementById(newCard).innerHTML = Book;
+
 myLibrary.push(theHobbit);
 
 /*
@@ -53,15 +68,22 @@ function displayBooks() {
     function display(title) {
         console.log(title); //showing objects in console
 
-        //create HTML element for title cards from array
+        //create HTML element for cards from array
         let newCard = document.createElement("span");
         newCard.id = 'card';
         let cardContent = document.createTextNode(title);
         newCard.appendChild(cardContent);
-        //add the created element into the DOM
-        bookContainer.appendChild(newCard);
 
-        //add the rest of the info (author, pages, read)
+        //add the other info (author, pages)
+        let authorInfo = document.createTextNode(author);
+        newCard.appendChild(authorInfo);
+        let pagesInfo = document.createTextNode(pages);
+        newCard.appendChild(pagesInfo);
+
+        //create checkbox for read
+
+        //add the created card into the DOM
+        bookContainer.appendChild(newCard);
 
         //create delete button and add to each card
         let deleteBtn = document.createElement("button");
@@ -79,7 +101,3 @@ function showForm() {
     const hideNewBook = newBookBtn;
         hideNewBook.style.display = 'none';
 }
-
-//add form functionality
-
-//display object info as HTML (innerHTML?)
