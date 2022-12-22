@@ -11,7 +11,6 @@ newCard.id = 'card';
 const cardTitle = document.createTextNode(title);
 const cardAuthor = document.createTextNode(author);
 const cardPages = document.createTextNode(pages);
-
 //read checkbox
 const readBox = document.createElement("input");
 const readBoxLabel = document.createElement("label");
@@ -20,7 +19,6 @@ readBox.type = 'checkbox';
 readBox.name = 'read-checkbox';
 readBoxLabel.setAttribute("for", "read-checkbox");
 const readLabelText = document.createTextNode("Have read:");
-
 //delete button
 const deleteBtn = document.createElement("button");
 deleteBtn.id = 'delete-button';
@@ -50,7 +48,7 @@ function Book(title, author, pages, read) {
     }
 }
 
-//create objects
+//create object example
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read')
 
 //functions
@@ -62,10 +60,14 @@ function showForm() {
 }
 
 //function to validate input
-//function to display input as the object properties
+//function to translate form field inputs as the object properties
+//push object into array
 
 function addBookToLibrary() {
-    myLibrary.forEach();
-    //create card and append info
-    //append card
+    myLibrary.forEach(displayCard);
+    //create card and append info into card for each object in array
+    displayCard() {
+        //
+    }
+    //append card into container
 }
