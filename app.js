@@ -37,7 +37,7 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
-
+//array
 let myLibrary = [];
 //object constructor
 function Book(title, author, pages, read) {
@@ -62,7 +62,7 @@ function showForm() {
 }
 
 //function to validate input
-//fuction to display input as the object properties
+//function to display input as the object properties
 
 function addBookToLibrary() {
     myLibrary.forEach();
