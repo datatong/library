@@ -18,7 +18,8 @@ let cardContent = document.createTextNode(title);
 newBookBtn.addEventListener("click", showForm);
 submitBtn.addEventListener("click", () => {
     //check for inputs and submit inputs
-    //
+    //submitted inputs into a new object to be displayed
+    //WORK HERE
     
     formContainer.style.display = 'block';
     //prevent sending input to server
@@ -44,13 +45,12 @@ function Book(title, author, pages, read) {
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
 
 /*test:
-//console.log(theHobbit);
+//theHobbit.sayTitle();
 //let theHob = JSON.stringify(theHobbit);
 */
 
 //display object info as HTML (innerHTML?)
 document.getElementById(newCard).innerHTML = Book;
-
 myLibrary.push(theHobbit);
 
 /*
@@ -61,6 +61,7 @@ function addBookToLibrary() {
 addBookToLibrary();
 */
 
+//WORK IN PROGRESS HERE
 function displayBooks() {
     //loop through array
     myLibrary.forEach(display);
