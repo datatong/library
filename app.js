@@ -1,16 +1,17 @@
-//DOM selectors
+////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
 let formContainer = document.getElementById("form-container");
 let submitBtn = document.getElementById("submit-button");
 let bookContainer = document.getElementById("book-container");
 
-//create DOM elements
+////CREATE DOM ELEMENTS////
 //book card
 const newCard = document.createElement("span");
 newCard.id = 'card';
 const cardTitle = document.createTextNode(title);
 const cardAuthor = document.createTextNode(author);
 const cardPages = document.createTextNode(pages);
+
 //read checkbox
 const readBoxContainer = document.createElement("div");
 readBoxContainer.id = 'read-box-container';
@@ -34,7 +35,7 @@ deleteBtn.id = 'delete-button';
 const deleteContent = document.createTextNode("Delete");
 deleteBtn.appendChild(deleteContent);
 
-//event listeners
+////EVENT LISTENERS////
 newBookBtn.addEventListener("click", showForm);
 submitBtn.addEventListener("click", () => {
     formContainer.style.display = 'block';
@@ -45,9 +46,9 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
-//array
+////array////
 let myLibrary = [];
-//object constructor
+////object constructor////
 function Book(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -58,10 +59,10 @@ function Book(title, author, pages, read) {
     }
 }
 
-//create object example
+////create object example////
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read')
 
-//functions
+////FUNCTIONS////
 function showForm() {
     const formShown = formContainer;
         formShown.style.display = 'block';
@@ -69,9 +70,9 @@ function showForm() {
         hideNewBook.style.display = 'none';
 }
 
-//function to validate input
-//function to translate form field inputs as the object properties
-//push object into array
+//function to validate input!!!
+//function to translate form field inputs as the object properties!!!
+//push object into array!!!
 myLibrary.push(theHobbit);
 
 function addBookToLibrary() {
@@ -90,4 +91,4 @@ function addBookToLibrary() {
 
 addBookToLibrary();
 
-//show object properties as HTML text elements
+//show object properties as HTML text elements!!!
