@@ -12,17 +12,27 @@ const cardTitle = document.createTextNode(title);
 const cardAuthor = document.createTextNode(author);
 const cardPages = document.createTextNode(pages);
 //read checkbox
+const readBoxContainer = document.createElement("div");
+readBoxContainer.id = 'read-box-container';
+readBoxContainer.className = 'read-box-container';
+
 const readBox = document.createElement("input");
-const readBoxLabel = document.createElement("label");
 readBox.id = 'read-checkbox';
 readBox.type = 'checkbox';
 readBox.name = 'read-checkbox';
+
+const readBoxLabel = document.createElement("label");
 readBoxLabel.setAttribute("for", "read-checkbox");
-const readLabelText = document.createTextNode("Have read:");
+const readBoxLabelText = document.createTextNode("Have read: ");
+readBoxLabel.appendChild(readBoxLabelText);
+readBoxContainer.appendChild(readBoxLabel);
+readBoxContainer.appendChild(readBox);
+
 //delete button
 const deleteBtn = document.createElement("button");
 deleteBtn.id = 'delete-button';
 const deleteContent = document.createTextNode("Delete");
+deleteBtn.appendChild(deleteContent);
 
 //event listeners
 newBookBtn.addEventListener("click", showForm);
@@ -62,12 +72,22 @@ function showForm() {
 //function to validate input
 //function to translate form field inputs as the object properties
 //push object into array
+myLibrary.push(theHobbit);
 
 function addBookToLibrary() {
     myLibrary.forEach(displayCard);
     //create card and append info into card for each object in array
-    displayCard() {
-        //
+    function displayCard() {
+        bookContainer.appendChild(newCard); //append card into container
+        newCard.appendChild(cardTitle);
+        newCard.appendChild(cardAuthor);
+        newCard.appendChild(cardPages);
+        newCard.appendChild(readBoxContainer);
+        newCard.appendChild(deleteBtn);
+        console.log(Book);
     }
-    //append card into container
 }
+
+addBookToLibrary();
+
+//show object properties as HTML text elements
