@@ -7,19 +7,21 @@ function Book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
-    this.info = function () {
-        return Book;
-    }
+    //this.info = function () {
+    //    return Book;
+    //}
 }
 
-////create object example////
+////test create object example////
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
+myLibrary.push(theHobbit);
 
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
 let formContainer = document.getElementById("form-container");
 let submitBtn = document.getElementById("submit-button");
 let bookContainer = document.getElementById("book-container");
+let submitForm = document.querySelector("form");
 
 ////CREATE DOM ELEMENTS////
 //book card
@@ -61,12 +63,23 @@ deleteBtn.appendChild(deleteContent);
 newBookBtn.addEventListener("click", showForm);
 submitBtn.addEventListener("click", () => {
     formContainer.style.display = 'block';
-
     //prevent sending input to server
     (e) => {
         e.preventDefault();
     }
+    //submit form field inputs as the object properties
+    submitForm.onsubmit = () => {
+        title = document.getElementById("title").value;
+        author = document.getElementById("author").value;
+        pages = document.getElementById("pages").value;
+
+        newBook = new Book(title, author, pages, read);
+        myLibrary.push(newBook);
+    }
 });
+//delete card event!!!
+//toggle read status event!!!
+//function to validate input!!!
 
 ////FUNCTIONS////
 function showForm() {
@@ -76,19 +89,12 @@ function showForm() {
         hideNewBook.style.display = 'none';
 }
 
-//function to validate input!!!
-//function to translate form field inputs as the object properties!!!
-//push object into array!!!
-myLibrary.push(theHobbit);
-
 //show object property values as HTML text elements
 Book.prototype.toString = function bookToString() {        
         for (const [key, value] of Object.entries(theHobbit)) {
             return `${key}: ${value}`;
-        }
-        
+        }    
     }
-
 let bookContent = document.createTextNode(theHobbit.toString());
 
 function addBookToLibrary() {
