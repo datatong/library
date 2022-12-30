@@ -1,3 +1,20 @@
+
+////array////
+let myLibrary = [];
+////object constructor////
+function Book(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+    this.info = function () {
+        return Book;
+    }
+}
+
+////create object example////
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
+
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
 let formContainer = document.getElementById("form-container");
@@ -6,8 +23,13 @@ let bookContainer = document.getElementById("book-container");
 
 ////CREATE DOM ELEMENTS////
 //book card
-const newCard = document.createElement("span");
-newCard.id = 'card';
+const card = document.createElement("span");
+card.id = 'card';
+card.className = 'card';
+const cardMainContainer = document.createElement("div");
+cardMainContainer.id = 'card-main-container';
+cardMainContainer.className = 'card-main-container';
+
 const cardTitle = document.createTextNode(title);
 const cardAuthor = document.createTextNode(author);
 const cardPages = document.createTextNode(pages);
@@ -46,22 +68,6 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
-////array////
-let myLibrary = [];
-////object constructor////
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.info = function () {
-        return Book;
-    }
-}
-
-////create object example////
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read')
-
 ////FUNCTIONS////
 function showForm() {
     const formShown = formContainer;
@@ -75,20 +81,32 @@ function showForm() {
 //push object into array!!!
 myLibrary.push(theHobbit);
 
+//show object property values as HTML text elements
+Book.prototype.toString = function bookToString() {        
+        for (const [key, value] of Object.entries(theHobbit)) {
+            return `${key}: ${value}`;
+        }
+        
+    }
+
+let bookContent = document.createTextNode(theHobbit.toString());
+
 function addBookToLibrary() {
     myLibrary.forEach(displayCard);
     //create card and append info into card for each object in array
     function displayCard() {
-        bookContainer.appendChild(newCard); //append card into container
-        newCard.appendChild(cardTitle);
-        newCard.appendChild(cardAuthor);
-        newCard.appendChild(cardPages);
-        newCard.appendChild(readBoxContainer);
-        newCard.appendChild(deleteBtn);
-        console.log(Book);
+        bookContainer.appendChild(card); //append card into container
+        card.appendChild(cardMainContainer);
+        cardMainContainer.appendChild(bookContent);
+
+        //cardMainContainer.appendChild(cardTitle);
+        //cardMainContainer.appendChild(cardAuthor);
+        //cardMainContainer.appendChild(cardPages);
+
+        card.appendChild(readBoxContainer);
+        card.appendChild(deleteBtn);
+        //console.log(Book);
     }
 }
 
 addBookToLibrary();
-
-//show object properties as HTML text elements!!!
