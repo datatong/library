@@ -11,11 +11,11 @@ function Book(title, author, pages, read) {
 }
 
 ////test create object example////
-//const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
 //const harryPotter = new Book('Harry Potter', 'JK Rowling', '900 pages', 'not read');
 
 ////array////
-let myLibrary = [];
+let myLibrary = [theHobbit];
 
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
@@ -79,6 +79,7 @@ submitBtn.addEventListener("click", () => {
         console.log(myLibrary);
         
         addBookToLibrary();
+        objectToString();
     }
 });
 
@@ -95,18 +96,11 @@ function showForm() {
         hideNewBook.style.display = 'none';
 }
 
-//show object property values as HTML text elements
-Book.prototype.toString = function bookToString() {        
-        for (const [key, value] of Object.entries(Book)) {
-            return `${key}: ${value}`;
-        }    
-    }
-let bookContent = document.createTextNode(Book.toString());
-
 function addBookToLibrary() {
+        const card = document.createElement("span");
         bookContainer.appendChild(card); //append card into container
         card.appendChild(cardMainContainer);
-        cardMainContainer.appendChild(bookContent);
+        //cardMainContainer.appendChild(bookContent);
 
         //cardMainContainer.appendChild(cardTitle);
         //cardMainContainer.appendChild(cardAuthor);
@@ -115,3 +109,21 @@ function addBookToLibrary() {
         card.appendChild(readBoxContainer);
         card.appendChild(deleteBtn);
 }
+
+//for each object in the array
+//myLibrary.forEach(objectToString);
+
+//for each property of each object in the array
+function objectToString() {
+    //!!!loop for each key-value pair of each book!!!
+    /*
+    Book.prototype.toString = function bookToString() {        
+        for (const [key, value] of Object.entries(theHobbit)) {
+            return `${key}: ${value}`;
+        }    
+    }
+    let bookContent = document.createTextNode(theHobbit.toString());
+    */
+    const bookContent = document.createTextNode(JSON.stringify(newBook));
+    cardMainContainer.appendChild(bookContent);
+ }
