@@ -12,7 +12,7 @@ function Book(title, author, pages, read) {
 
 ////test create object example////
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
-
+//const harryPotter = new Book('Harry Potter', 'JK Rowling', '900 pages', 'not read');
 ////array////
 let myLibrary = [theHobbit];
 
@@ -78,12 +78,14 @@ submitBtn.addEventListener("click", () => {
         myLibrary.push(newBook);
         //alert(newBook);
         addBookToLibrary();
+        //insert newest card at the last position in the bookcontainer
+        card.after(newBook);
     }
 });
 
-//delete card event!!!
-//toggle read status event!!!
-//function to validate input!!!
+//!!!delete card event!!!
+//!!!toggle read status event!!!
+//!!!function to validate input!!!
 
 ////FUNCTIONS////
 function showForm() {
@@ -94,14 +96,13 @@ function showForm() {
 }
 
 //show object property values as HTML text elements
-/*
+
 Book.prototype.toString = function bookToString() {        
         for (const [key, value] of Object.entries(Book)) {
             return `${key}: ${value}`;
         }    
     }
 let bookContent = document.createTextNode(Book.toString());
-*/
 
 function addBookToLibrary() {
     myLibrary.forEach(displayCard);
@@ -117,7 +118,8 @@ function addBookToLibrary() {
 
         card.appendChild(readBoxContainer);
         card.appendChild(deleteBtn);
-        //console.log(Book);
+        console.log(Book);
     }
 }
-addBookToLibrary();
+
+//addBookToLibrary();
