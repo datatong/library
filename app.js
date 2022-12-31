@@ -78,8 +78,6 @@ submitBtn.addEventListener("click", () => {
         myLibrary.push(newBook);
         //alert(newBook);
         addBookToLibrary();
-        //insert newest card at the last position in the bookcontainer
-        card.after(newBook);
     }
 });
 
