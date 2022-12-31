@@ -14,7 +14,7 @@ function Book(title, author, pages, read) {
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
 //const harryPotter = new Book('Harry Potter', 'JK Rowling', '900 pages', 'not read');
 ////array////
-let myLibrary = [theHobbit];
+let myLibrary = [];
 
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
@@ -63,19 +63,17 @@ deleteBtn.appendChild(deleteContent);
 newBookBtn.addEventListener("click", showForm);
 submitBtn.addEventListener("click", () => {
     formContainer.style.display = 'block';
-    //prevent sending input to server
-    (e) => {
-        e.preventDefault();
-    }
     //submit form field inputs as the object properties
-    submitForm.onsubmit = () => {
+    submitForm.onsubmit = (e) => {
+        e.preventDefault();
         title = document.getElementById("title").value;
         author = document.getElementById("author").value;
         pages = document.getElementById("pages").value;
         read = document.getElementById("read").value;
-
         newBook = new Book(title, author, pages, read);
+        console.log(newBook);
         myLibrary.push(newBook);
+        console.log(myLibrary);
         //alert(newBook);
         addBookToLibrary();
     }
@@ -103,9 +101,9 @@ Book.prototype.toString = function bookToString() {
 let bookContent = document.createTextNode(Book.toString());
 
 function addBookToLibrary() {
-    myLibrary.forEach(displayCard);
+    //myLibrary.forEach(displayCard);
     //create card and append info into card for each object in array
-    function displayCard() {
+    //function displayCard() {
         bookContainer.appendChild(card); //append card into container
         card.appendChild(cardMainContainer);
         cardMainContainer.appendChild(bookContent);
@@ -116,8 +114,7 @@ function addBookToLibrary() {
 
         card.appendChild(readBoxContainer);
         card.appendChild(deleteBtn);
-        console.log(Book);
     }
-}
+//}
 
 //addBookToLibrary();
