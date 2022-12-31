@@ -1,6 +1,4 @@
 
-////array////
-let myLibrary = [];
 ////object constructor////
 function Book(title, author, pages, read) {
     this.title = title
@@ -14,7 +12,9 @@ function Book(title, author, pages, read) {
 
 ////test create object example////
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
-myLibrary.push(theHobbit);
+
+////array////
+let myLibrary = [theHobbit];
 
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
@@ -72,11 +72,15 @@ submitBtn.addEventListener("click", () => {
         title = document.getElementById("title").value;
         author = document.getElementById("author").value;
         pages = document.getElementById("pages").value;
+        read = document.getElementById("read").value;
 
         newBook = new Book(title, author, pages, read);
         myLibrary.push(newBook);
+        //alert(newBook);
+        addBookToLibrary();
     }
 });
+
 //delete card event!!!
 //toggle read status event!!!
 //function to validate input!!!
@@ -90,12 +94,14 @@ function showForm() {
 }
 
 //show object property values as HTML text elements
+/*
 Book.prototype.toString = function bookToString() {        
-        for (const [key, value] of Object.entries(theHobbit)) {
+        for (const [key, value] of Object.entries(Book)) {
             return `${key}: ${value}`;
         }    
     }
-let bookContent = document.createTextNode(theHobbit.toString());
+let bookContent = document.createTextNode(Book.toString());
+*/
 
 function addBookToLibrary() {
     myLibrary.forEach(displayCard);
@@ -114,5 +120,4 @@ function addBookToLibrary() {
         //console.log(Book);
     }
 }
-
 addBookToLibrary();
