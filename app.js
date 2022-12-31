@@ -11,10 +11,11 @@ function Book(title, author, pages, read) {
 }
 
 ////test create object example////
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
+//const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
 //const harryPotter = new Book('Harry Potter', 'JK Rowling', '900 pages', 'not read');
+
 ////array////
-let myLibrary = [theHobbit];
+let myLibrary = [];
 
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
@@ -63,29 +64,28 @@ deleteBtn.appendChild(deleteContent);
 newBookBtn.addEventListener("click", showForm);
 submitBtn.addEventListener("click", () => {
     formContainer.style.display = 'block';
-    //prevent sending input to server
-    (e) => {
-        e.preventDefault();
-    }
     //submit form field inputs as the object properties
-    submitForm.onsubmit = () => {
+    submitForm.onsubmit = (e) => {
+        e.preventDefault();
         title = document.getElementById("title").value;
         author = document.getElementById("author").value;
         pages = document.getElementById("pages").value;
         read = document.getElementById("read").value;
 
         newBook = new Book(title, author, pages, read);
+
+        console.log(newBook);
         myLibrary.push(newBook);
-        //alert(newBook);
+        console.log(myLibrary);
+        
         addBookToLibrary();
-        //insert newest card at the last position in the bookcontainer
-        card.after(newBook);
     }
 });
 
 //!!!delete card event!!!
 //!!!toggle read status event!!!
 //!!!function to validate input!!!
+//!!!prototype for read status for each book!!!
 
 ////FUNCTIONS////
 function showForm() {
@@ -96,7 +96,6 @@ function showForm() {
 }
 
 //show object property values as HTML text elements
-
 Book.prototype.toString = function bookToString() {        
         for (const [key, value] of Object.entries(Book)) {
             return `${key}: ${value}`;
@@ -105,9 +104,6 @@ Book.prototype.toString = function bookToString() {
 let bookContent = document.createTextNode(Book.toString());
 
 function addBookToLibrary() {
-    myLibrary.forEach(displayCard);
-    //create card and append info into card for each object in array
-    function displayCard() {
         bookContainer.appendChild(card); //append card into container
         card.appendChild(cardMainContainer);
         cardMainContainer.appendChild(bookContent);
@@ -118,8 +114,4 @@ function addBookToLibrary() {
 
         card.appendChild(readBoxContainer);
         card.appendChild(deleteBtn);
-        console.log(Book);
-    }
 }
-
-//addBookToLibrary();
