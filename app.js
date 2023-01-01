@@ -11,11 +11,11 @@ function Book(title, author, pages, read) {
 }
 
 ////test create object example////
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
+//const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
 //const harryPotter = new Book('Harry Potter', 'JK Rowling', '900 pages', 'not read');
 
 ////array////
-let myLibrary = [theHobbit];
+let myLibrary = [];
 
 ////DOM SELECTORS////
 let newBookBtn = document.getElementById("new-book-button");
@@ -75,11 +75,10 @@ submitBtn.addEventListener("click", () => {
         newBook = new Book(title, author, pages, read);
 
         console.log(newBook);
-        myLibrary.push(newBook);
         console.log(myLibrary);
-        
-        addBookToLibrary();
-        objectToString();
+
+        myLibrary.push(newBook);
+        forEachBook();
     }
 });
 
@@ -97,25 +96,17 @@ function showForm() {
 }
 
 function addBookToLibrary() {
-        const card = document.createElement("span");
-        bookContainer.appendChild(card); //append card into container
-        card.appendChild(cardMainContainer);
-        //cardMainContainer.appendChild(bookContent);
+    let newCard = document.createElement("span");
 
-        //cardMainContainer.appendChild(cardTitle);
-        //cardMainContainer.appendChild(cardAuthor);
-        //cardMainContainer.appendChild(cardPages);
-
-        card.appendChild(readBoxContainer);
-        card.appendChild(deleteBtn);
+    bookContainer.appendChild(newCard); //append card into container
+    newCard.appendChild(cardMainContainer);
+    newCard.appendChild(readBoxContainer);
+    newCard.appendChild(deleteBtn);
 }
-
-//for each object in the array
-//myLibrary.forEach(objectToString);
 
 //for each property of each object in the array
 function objectToString() {
-    //!!!loop for each key-value pair of each book!!!
+    //loop for each key-value pair of each book
     /*
     Book.prototype.toString = function bookToString() {        
         for (const [key, value] of Object.entries(theHobbit)) {
@@ -126,4 +117,14 @@ function objectToString() {
     */
     const bookContent = document.createTextNode(JSON.stringify(newBook));
     cardMainContainer.appendChild(bookContent);
- }
+}
+
+//loop for each object in the array
+function forEachBook() {
+    //start at myLibrary[(myLibrary.length) - 1] to prevent looping previous entries again
+    myLibrary.slice((myLibrary.length)-1).forEach(() => {
+        addBookToLibrary();
+        objectToString();
+        }
+    );
+}
