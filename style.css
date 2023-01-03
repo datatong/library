@@ -28,7 +28,7 @@ body {
     flex-direction: column;
 }
 
-.card-main-container {
+.card-info-container {
     display: flex;
     flex-direction: column;
 }

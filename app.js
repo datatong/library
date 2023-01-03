@@ -29,15 +29,16 @@ let submitForm = document.querySelector("form");
 const card = document.createElement("span");
 card.id = 'card';
 card.className = 'card';
-const cardMainContainer = document.createElement("div");
-cardMainContainer.id = 'card-main-container';
-cardMainContainer.className = 'card-main-container';
+const cardInfoContainer = document.createElement("div");
+cardInfoContainer.id = 'card-info-container';
+cardInfoContainer.className = 'card-info-container';
 
 const cardTitle = document.createTextNode(title);
 const cardAuthor = document.createTextNode(author);
 const cardPages = document.createTextNode(pages);
 
 //read checkbox
+/*
 const readBoxContainer = document.createElement("div");
 readBoxContainer.id = 'read-box-container';
 readBoxContainer.className = 'read-box-container';
@@ -53,15 +54,19 @@ const readBoxLabelText = document.createTextNode("Have read: ");
 readBoxLabel.appendChild(readBoxLabelText);
 readBoxContainer.appendChild(readBoxLabel);
 readBoxContainer.appendChild(readBox);
+*/
 
 //delete button
+
 const deleteBtn = document.createElement("button");
 deleteBtn.id = 'delete-button';
 const deleteContent = document.createTextNode("Delete");
 deleteBtn.appendChild(deleteContent);
 
+
 ////EVENT LISTENERS////
 newBookBtn.addEventListener("click", showForm);
+
 submitBtn.addEventListener("click", () => {
     formContainer.style.display = 'block';
     //submit form field inputs as the object properties
@@ -73,6 +78,7 @@ submitBtn.addEventListener("click", () => {
         read = document.getElementById("read").value;
 
         newBook = new Book(title, author, pages, read);
+        //!!!CREATE ELEMENT DURING BOOK OBJECT CREATION!!!
 
         console.log(newBook);
         console.log(myLibrary);
@@ -82,10 +88,23 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
+document.addEventListener("click", deleteNewCard);
+
+function deleteNewCard (e) {
+    var deleteTarget = e.target;
+    if(deleteTarget.tagName = 'BUTTON') {
+        newCard.remove();
+    }
+}
+
 //!!!delete card event!!!
-//!!!toggle read status event!!!
 //!!!function to validate input!!!
+
+//!!!toggle read status event!!!
 //!!!prototype for read status for each book!!!
+Book.prototype.hasRead = () => {
+    //this.read = Boolean(read);
+}
 
 ////FUNCTIONS////
 function showForm() {
@@ -95,13 +114,46 @@ function showForm() {
         hideNewBook.style.display = 'none';
 }
 
-function addBookToLibrary() {
+function addBookToLibrary() { 
     let newCard = document.createElement("span");
-
+    let newCardInfoContainer = document.createElement("div");
+    newCardInfoContainer.id = 'card-info-container';
+    newCardInfoContainer.className = 'card-info-container';
     bookContainer.appendChild(newCard); //append card into container
-    newCard.appendChild(cardMainContainer);
-    newCard.appendChild(readBoxContainer);
-    newCard.appendChild(deleteBtn);
+    newCard.appendChild(newCardInfoContainer);
+
+    //!!!CREATED NEW ELEMENT EACH TIME IT NEEDS TO BE APPENDED!!!
+    //function invocation regarding 'this.'
+    const cardTitle = document.createTextNode(title);
+    const cardAuthor = document.createTextNode(author);
+    const cardPages = document.createTextNode(pages);
+    newCardInfoContainer.appendChild(cardTitle);
+    newCardInfoContainer.appendChild(cardAuthor);
+    newCardInfoContainer.appendChild(cardPages);
+
+    //readbox
+    const readBoxContainer = document.createElement("div");
+    readBoxContainer.id = 'read-box-container';
+    readBoxContainer.className = 'read-box-container';
+    
+    const readBox = document.createElement("input");
+    readBox.type = "checkbox";
+    //readBox.setAttribute("type", "checkbox");
+    readBox.id = 'read-checkbox';
+    readBox.name = 'read-checkbox';
+    
+    const readBoxLabel = document.createElement("label");
+    readBoxLabel.setAttribute("for", "read-checkbox");
+    const readBoxLabelText = document.createTextNode("Have read: ");
+    readBoxLabel.appendChild(readBoxLabelText);
+    readBoxContainer.appendChild(readBoxLabel);
+    readBoxContainer.appendChild(readBox);
+
+    //delete
+    let newDeleteBtn = document.createElement("button");
+    newCard.appendChild(newDeleteBtn);
+    const deleteContent = document.createTextNode("Delete");
+    newDeleteBtn.appendChild(deleteContent);
 }
 
 //for each property of each object in the array
@@ -116,7 +168,7 @@ function objectToString() {
     let bookContent = document.createTextNode(theHobbit.toString());
     */
     const bookContent = document.createTextNode(JSON.stringify(newBook));
-    cardMainContainer.appendChild(bookContent);
+    cardInfoContainer.appendChild(bookContent);
 }
 
 //loop for each object in the array
