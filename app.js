@@ -24,14 +24,15 @@ let bookContainer = document.getElementById("book-container");
 let submitForm = document.querySelector("form");
 
 ////EVENT LISTENER////
-///form///
-submitBtn.addEventListener("click", () => {    
-    //submit form entries
+//CREATE ELEMENT DURING BOOK OBJECT CREATION!!
+submitBtn.addEventListener("click", () => { 
+    //create object, submit form, add cards for each object of array   
     submitForm.onsubmit = (e) => {
         e.preventDefault();
         //create new object
         newBook = new Book(title, author, pages, read);
 
+        //object properties = form entries
         title = document.getElementById("title").value;
         author = document.getElementById("author").value;
         pages = document.getElementById("pages").value;
@@ -50,23 +51,24 @@ submitBtn.addEventListener("click", () => {
 //card delete button
 
 ////FUNCTIONS////
-//submitForm.onsubmit
-//newBook = new Book(title, author, pages, read); //!!CREATE ELEMENT DURING BOOK OBJECT CREATION!!
+
 
 function createCard() {
     //create card elements
     let card = document.createElement("span");
     let cardInfoContainer = document.createElement("div");
     cardInfoContainer.className = "card-info-container";
-    let cardInfo = document.createElement("ul");
+
+    let cardInfoTitle = document.createElement("div");
+    let cardInfoAuthor = document.createElement("div");
+    let cardInfoPages = document.createElement("div");
+
     let cardSecondContainer = document.createElement("div");
     cardSecondContainer.className = "card-second-container";
 
-    /*
     const cardTitle = document.createTextNode(title);
     const cardAuthor = document.createTextNode(author);
     const cardPages = document.createTextNode(pages);
-    */
 
     let readCheckBox = document.createElement("input");
     readCheckBox.type = "checkbox";
@@ -81,17 +83,20 @@ function createCard() {
 
     //construct the card layout
     card.appendChild(cardInfoContainer);
-    cardInfoContainer.appendChild(cardInfo);
     card.appendChild(cardSecondContainer);
 
-    cardInfoContainer.appendChild(cardTitle);
-    cardInfoContainer.appendChild(cardAuthor);
-    cardInfoContainer.appendChild(cardPages);
+    cardInfoContainer.appendChild(cardInfoTitle);
+    cardInfoContainer.appendChild(cardInfoAuthor);
+    cardInfoContainer.appendChild(cardInfoPages);
+    cardInfoTitle.appendChild(cardTitle);
+    cardInfoAuthor.appendChild(cardAuthor);
+    cardInfoPages.appendChild(cardPages);
 
     cardSecondContainer.appendChild(readCheckBox);
     cardSecondContainer.appendChild(checkBoxLabel);
-    checkBoxLabel.appendChild(checkBoxLabelTxt);
-    cardSecondContainer.appendChild(deleteBtn);
+    cardSecondContainer.appendChild(checkBoxLabelTxt);
+    
+    card.appendChild(deleteBtn);
     deleteBtn.appendChild(deleteTxt);
 
     //append card to container
@@ -100,6 +105,7 @@ function createCard() {
 
 //append card to bookcontainer
 function addBookToLibrary() {
+    //starts at newest pushed object (prevents appending previously appended cards)
     myLibrary.slice((myLibrary.length)-1).forEach(() => {
         createCard();
     });

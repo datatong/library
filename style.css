@@ -32,3 +32,12 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.card-info-container > div {
+    text-align: center;
+}
+
+.card-second-container {
+    display: flex;
+    justify-content: center;
+}
