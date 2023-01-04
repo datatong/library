@@ -2,11 +2,11 @@
 body {
     background-color: whitesmoke;
 }
-
+/*
 .form-container {
-    display: none;
+    
 }
-
+*/
 .book-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
