@@ -47,12 +47,12 @@ submitBtn.addEventListener("click", () => {
     }    
 });
 
-///card///
-//card delete button
+//for delete button in card element (which are both not yet created on DOM)
+deleteBtn.addEventListener("click", () => {
+    //code here
+})
 
 ////FUNCTIONS////
-
-
 function createCard() {
     //create card elements
     let card = document.createElement("span");
@@ -66,9 +66,9 @@ function createCard() {
     let cardSecondContainer = document.createElement("div");
     cardSecondContainer.className = "card-second-container";
 
-    const cardTitle = document.createTextNode(title);
-    const cardAuthor = document.createTextNode(author);
-    const cardPages = document.createTextNode(pages);
+    const cardTitle = document.createTextNode("Title: " + title);
+    const cardAuthor = document.createTextNode("Author: " + author);
+    const cardPages = document.createTextNode("Pages: " + pages);
 
     let readCheckBox = document.createElement("input");
     readCheckBox.type = "checkbox";
@@ -110,7 +110,3 @@ function addBookToLibrary() {
         createCard();
     });
 }
-
-//deleteCard()
-
-//objectToString()
