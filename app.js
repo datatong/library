@@ -4,9 +4,15 @@ function Book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
-    //this.info = function () {
-    //    return Book;
-    //}
+    /*
+    this.info = function () {
+        return Book;
+    }
+    */
+}
+
+Book.prototype.info = function () {
+    return Book;
 }
 
 ////test create object example////
@@ -46,11 +52,6 @@ submitBtn.addEventListener("click", () => {
         addBookToLibrary();
     }    
 });
-
-//for delete button in card element (which are both not yet created on DOM)
-deleteBtn.addEventListener("click", () => {
-    //code here
-})
 
 ////FUNCTIONS////
 function createCard() {
@@ -101,6 +102,17 @@ function createCard() {
 
     //append card to container
     bookContainer.appendChild(card);
+    
+    //add eventlistener after element is created
+    function createEventListener() {
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', function() {
+                //console.log('success');
+                card.remove();
+            });
+        }
+    }
+    createEventListener();
 }
 
 //append card to bookcontainer
@@ -110,3 +122,5 @@ function addBookToLibrary() {
         createCard();
     });
 }
+
+//Check box to toggle read status (Do I utitlize prototype property?)!!
