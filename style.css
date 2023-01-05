@@ -2,11 +2,17 @@
 body {
     background-color: whitesmoke;
 }
-/*
-.form-container {
-    
+
+h1 {
+    margin-left: 10%;
 }
-*/
+
+.form-container {
+    margin-bottom: 30px;
+    display: flex;
+    margin-left: 10%;
+}
+
 .book-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

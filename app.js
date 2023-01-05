@@ -15,7 +15,7 @@ Book.prototype.info = function () {
     return Book;
 }
 
-newBook.prototype = Object.create(Book.prototype);
+//newBook.prototype = Object.create(Book.prototype);
 
 ////test create object example////
 //const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read');
